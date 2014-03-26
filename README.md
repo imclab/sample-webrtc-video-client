@@ -4,7 +4,7 @@ Crosswalk Build Target Recommended-This sample demonstrates how to connect to a 
 
 Intel(R) XDK 
 -------------------------------------------
-This sample is part of the Intel(R) XDK. Download the Intel(R) XDK at http://software.intel.com/en-us/html5. To see the technical details of the sample, please visit the sample article page at TBA.
+This sample is part of the Intel(R) XDK. Download the Intel(R) XDK at http://software.intel.com/en-us/html5. To see the technical details of the sample, please visit the sample article page at http://software.intel.com/en-us/html5/webrtc-client-and-server.
 
 
 Important App Files
