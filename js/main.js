@@ -19,20 +19,16 @@ var sdpConstraints = {'mandatory': {
 
 /////////////////////////////////////////////
 
-//var room = location.pathname.substring(1);
 var room = '';
-if (room === '') {
-//  room = prompt('Enter room name:');
-  room = 'Numero 01';
-} else {
-  //
-}
 
 var socket = io.connect("http://ec2-50-17-69-205.compute-1.amazonaws.com:5238");
 
 if (room !== '') {
   console.log('Create or join room', room);
   socket.emit('create or join', room);
+}
+else {
+  alert("No room specified!! Please specify a room name in the 'main.js' room variable");
 }
 
 socket.on('created', function (room){
