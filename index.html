@@ -10,8 +10,9 @@
 		input, textarea  { -webkit-user-select:text; }
 		body { background-color:white; color:black }
 	</style>
-    <script type="text/javascript" charset="utf-8" src="appframework/appframework.ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="appframework/af.ui.css"></link>
+    <script type="text/javascript" charset="utf-8" src="appframework/appframework.ui.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/main.css"></link>
     <script src='xhr.js'></script>
     <script src="http://ec2-50-17-69-205.compute-1.amazonaws.com:5238/socket.io/socket.io.js"></script>
@@ -22,8 +23,7 @@
         
         <div id="content">
 
-            <div id="main" title="WebRTC VChat" class="panel" data-footer="none" selected="true" style="overflow:hidden">
-               
+            <div id="main" title="WebRTC VChat" class="panel" data-footer="none" selected="true">
                 <div id="videos_div">
                     <div id="myvideo_div" class="video_bdr">
                         <video id="localVideo" autoplay muted="muted"></video>
@@ -31,7 +31,16 @@
                     <div id="remotevideo_div" class="video_bdr">
                         <video id="remoteVideo" autoplay></video>
                     </div>    
-                </div> 
+                </div>
+                <div id="room_div">
+                    <input type="text" placeholder="Room Name" id="room_input"/>
+                    <a id="joinbtn" class="button" onclick="connect()">Join Room</a>
+                    <a id="stopbtn" class="button red" style="display:none" onclick="stop('false')">End Session!</a>
+                </div>
+                <div>
+                    <b>Log:</b><br>
+                    <div id="feedback_div" class="redtext"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -39,7 +48,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
 	setTimeout(function(){
-		alert("Note: This sample should be built with 'Crosswalk for Android' Build target.")
+//		alert("Note: This sample should be built with 'Crosswalk for Android' Build target.")
 	},3000);
 </script>
 </html>
