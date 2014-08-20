@@ -14,9 +14,19 @@
     <script type="text/javascript" charset="utf-8" src="appframework/appframework.ui.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <script src="intelxdk.js"></script>
+    <script src="cordova.js"></script>
+    
     <script src='xhr.js'></script>
     <script src="http://ec2-50-17-69-205.compute-1.amazonaws.com:5238/socket.io/socket.io.js"></script>
-
+    <script type="text/javascript">
+        var onDeviceReady=function(){                             // called when Cordova is ready
+           if( window.Cordova && navigator.splashscreen ) {     // Cordova API detected
+                navigator.splashscreen.hide() ;                 // hide splash screen
+            }
+        } ;
+        document.addEventListener("deviceready", onDeviceReady, false) ;
+     </script>
 </head>
 <body>
 	<div id="afui">
@@ -46,9 +56,9 @@
     </div>
 </body>
 <script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	setTimeout(function(){
-//		alert("Note: This sample should be built with 'Crosswalk for Android' Build target.")
+	   alert("Note: This sample should be built with 'Crosswalk for Android' Build target.")
 	},3000);
-</script>
+</script>-->
 </html>
