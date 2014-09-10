@@ -53,14 +53,10 @@
       "Android": {
         "platform_": "android",
         "name_": "Android",
-        "preferences_": {
-          "Orientation": "portrait",
-          "android-minSdkVersion": "10",
-          "android-targetedSdkVersion": "19"
-        },
+        "preferences_": {},
         "isActive_": true,
-        "appName_": "WebRTCVideo",
-        "appID_": "xdk.sample.webrtcvideo",
+        "appName_": "webrtc",
+        "appID_": "not.yet.specified",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -69,22 +65,16 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.1",
-        "runtime_": "Cordova 3.x",
-        "appDescription_": "A sample that leverages WebRTC for video chatting capabilities.",
-        "appVersionCode_": "1"
+        "appVersion_": "1.0.0",
+        "runtime_": "Cordova 3.x"
       },
       "Android-Crosswalk": {
         "platform_": "android",
         "name_": "Android-Crosswalk",
-        "preferences_": {
-          "android-minSdkVersion": "14",
-          "android-targetedSdkVersion": "19",
-          "Orientation": "portrait"
-        },
+        "preferences_": {},
         "isActive_": true,
-        "appName_": "WebRTCVideo",
-        "appID_": "xdk.sample.webrtcvideo",
+        "appName_": "webrtc",
+        "appID_": "not.yet.specified",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -93,21 +83,16 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.1",
-        "runtime_": "Crosswalk with Cordova 3.x",
-        "appDescription_": "A sample that leverages WebRTC for video chatting capabilities.",
-        "appVersionCode_": "1"
+        "appVersion_": "1.0.0",
+        "runtime_": "Crosswalk with Cordova 3.x"
       },
       "iOS": {
         "platform_": "ios",
         "name_": "iOS",
-        "preferences_": {
-          "ios-target": "5",
-          "Orientation": "portrait"
-        },
+        "preferences_": {},
         "isActive_": true,
-        "appName_": "WebRTCVideo",
-        "appID_": "xdk.sample.webrtcvideo",
+        "appName_": "webrtc",
+        "appID_": "not.yet.specified",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -116,19 +101,16 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.1",
-        "runtime_": "Cordova 3.x",
-        "appDescription_": "A sample that leverages WebRTC for video chatting capabilities."
+        "appVersion_": "1.0.0",
+        "runtime_": "Cordova 3.x"
       },
       "Windows8": {
         "platform_": "windows8",
         "name_": "Windows8",
-        "preferences_": {
-          "Orientation": "portrait"
-        },
+        "preferences_": {},
         "isActive_": true,
-        "appName_": "WebRTCVideo",
-        "appID_": "xdk.sample.webrtcvideo",
+        "appName_": "webrtc",
+        "appID_": "not.yet.specified",
         "appAccess_": "*",
         "icons_": [],
         "splashes_": [],
@@ -137,16 +119,15 @@
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "3.3",
         "crosswalkVersion_": "stable",
-        "appVersion_": "0.0.0.1",
-        "runtime_": "Cordova 3.x",
-        "appDescription_": "A sample that leverages WebRTC for video chatting capabilities."
+        "appVersion_": "1.0.0.0",
+        "runtime_": "Cordova 3.x"
       },
       "WindowsPhone8": {
         "platform_": "wp8",
         "name_": "WindowsPhone8",
         "preferences_": {},
         "isActive_": true,
-        "appName_": "WebRTCVideo",
+        "appName_": "webrtc",
         "appID_": "not.yet.specified",
         "appAccess_": "*",
         "icons_": [],
