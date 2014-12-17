@@ -50,7 +50,9 @@ function sendMessage(message) {
 
 //Connect to websocket server, listen for server emitted 'events'
 function connect() {
+    alert("This project requires that both clients are equipped with an active camera & microphone module!");
     room = $('#room_input').val();
+    
     if (room != '') {
         if(socket == ""){
             console.log("Fresh Connection");
@@ -63,81 +65,88 @@ function connect() {
         }
         console.log("Before timeout, socket is connected: "+socket.socket.connected);
         
-        setTimeout(function(){        
-            console.log("Attempt to create room, socket is connected: "+socket.socket.connected);
-            console.log('Create or join room', room);
-            socket.emit('create or join', room);
+        setTimeout(function(){
+            if (socket.socket.connected == true) {
+                console.log("Attempt to create room, socket is connected: "+socket.socket.connected);
+                console.log('Create or join room', room);
+                socket.emit('create or join', room);
 
-            socket.on('created', function(room) {
-                console.log('Created room ' + room);
-                feedback_d.innerHTML = "<em>Created room </em>" + room;
-                isInitiator = true;
-            });
+                socket.on('created', function(room) {
+                    console.log('Created room ' + room);
+                    feedback_d.innerHTML = "<em>Created room </em>" + room;
+                    isInitiator = true;
+                });
 
-            socket.on('full', function(room) {
-                console.log('Room ' + room + ' is full');
-                feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>Room </em>" + room + "<em> is full</em>";
-            });
+                socket.on('full', function(room) {
+                    console.log('Room ' + room + ' is full');
+                    feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>Room </em>" + room + "<em> is full</em>";
+                });
 
-            socket.on('join', function(room) {
-                console.log('This peer is the initiator of room ' + room + '!');
-                feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>This peer is the initiator of room " + room + "!</em>";
-                console.log('Another peer made a request to join room ' + room);
-                feedback_d.innerHTML = feedback_d.innerHTML + "<br>" +"<em>Another peer made a request to join room " + room+"!</em>";
-                isChannelReady = true;
-            });
+                socket.on('join', function(room) {
+                    console.log('This peer is the initiator of room ' + room + '!');
+                    feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>This peer is the initiator of room " + room + "!</em>";
+                    console.log('Another peer made a request to join room ' + room);
+                    feedback_d.innerHTML = feedback_d.innerHTML + "<br>" +"<em>Another peer made a request to join room " + room+"!</em>";
+                    isChannelReady = true;
+                });
 
-            socket.on('joined', function(room) {
-                console.log('This peer has joined room ' + room);
-                feedback_d.innerHTML = "<em>This peer has joined room " + room+"</em>";
-                isChannelReady = true;
-            });
+                socket.on('joined', function(room) {
+                    console.log('This peer has joined room ' + room);
+                    feedback_d.innerHTML = "<em>This peer has joined room " + room+"</em>";
+                    isChannelReady = true;
+                });
 
-            socket.on('log', function(array) {
-                console.log.apply(console, array);
-            });
+                socket.on('log', function(array) {
+                    console.log.apply(console, array);
+                });
 
-            socket.on('leave', function(room) {
-                console.log('Client(s) session has been completely disconnected from server & room '+room+"!");
-                feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>Client(s) session has been completely disconnected from server & room "+room+"!</em>";
-                stop('true');
-            });
+                socket.on('leave', function(room) {
+                    console.log('Client(s) session has been completely disconnected from server & room '+room+"!");
+                    feedback_d.innerHTML = feedback_d.innerHTML + "<br>" + "<em>Client(s) session has been completely disconnected from server & room "+room+"!</em>";
+                    stop('true');
+                });
 
-            socket.on('message', function(message) {
-                console.log('Client received message:', message);
-                if (message === 'got user media') {
-                    maybeStart();
-                } else if (message.type === 'offer') {
-                    if (!isInitiator && !isStarted) {
-                        console.log("isInitiator? "+isInitiator+" and isStarted?"+isStarted);
+                socket.on('message', function(message) {
+                    console.log('Client received message:', message);
+                    if (message === 'got user media') {
                         maybeStart();
+                    } else if (message.type === 'offer') {
+                        if (!isInitiator && !isStarted) {
+                            console.log("isInitiator? "+isInitiator+" and isStarted?"+isStarted);
+                            maybeStart();
+                        }
+                        pc.setRemoteDescription(new RTCSessionDescription(message));
+                        doAnswer();
+                    } else if (message.type === 'answer' && isStarted) {
+                        pc.setRemoteDescription(new RTCSessionDescription(message));
+                    } else if (message.type === 'candidate' && isStarted) {
+                        var candidate = new RTCIceCandidate({
+                            sdpMLineIndex: message.label,
+                            candidate: message.candidate
+                        });
+                        pc.addIceCandidate(candidate);
+                    } else if (message === 'bye' && isStarted) {
+                        handleRemoteHangup();
                     }
-                    pc.setRemoteDescription(new RTCSessionDescription(message));
-                    doAnswer();
-                } else if (message.type === 'answer' && isStarted) {
-                    pc.setRemoteDescription(new RTCSessionDescription(message));
-                } else if (message.type === 'candidate' && isStarted) {
-                    var candidate = new RTCIceCandidate({
-                        sdpMLineIndex: message.label,
-                        candidate: message.candidate
-                    });
-                    pc.addIceCandidate(candidate);
-                } else if (message === 'bye' && isStarted) {
-                    handleRemoteHangup();
-                }
-            });
+                });
 
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-            navigator.getUserMedia(constraints, handleUserMedia, handleUserMediaError);
-            //console.log('Getting user media with constraints', constraints);
-            document.getElementById("stopbtn").removeAttribute("style");
-            document.getElementById("joinbtn").style.display = "none";
-        }, 2000);
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                navigator.getUserMedia(constraints, handleUserMedia, handleUserMediaError);
+                //console.log('Getting user media with constraints', constraints);
+                document.getElementById("stopbtn").removeAttribute("style");
+                document.getElementById("joinbtn").style.display = "none";
+            }
+        
+            else {
+                feedback_d.innerHTML = feedback_d.innerHTML + "<br> Unable to connect to signalling server due to network settings..";
+            }
+        }, 2000); 
     } 
     
     else {
         alert("No room specified!! Please specify a room name.");
     }
+    
 }
 ////////////////////////////////////////////////////
 
