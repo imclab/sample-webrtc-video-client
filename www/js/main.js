@@ -57,7 +57,7 @@ function connect() {
         if(socket == ""){
             console.log("Fresh Connection");
             feedback_d.innerHTML = "<em>Connecting.......</em>";
-            socket = io.connect("http://ec2-50-17-69-205.compute-1.amazonaws.com:5238");
+            socket = io.connect("http://signalstore.html5m.com:5238");
         }
         else if(socket.socket.connected == false){
             socket.socket.reconnect();
