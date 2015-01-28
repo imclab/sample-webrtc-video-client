@@ -5,13 +5,14 @@
 	"tooltip":"[CrossWalk for Android] A sample that leverages WebRTC for video chatting capabilities.",
 	"description":"[CrossWalk for Android] A sample that leverages WebRTC for video chatting capabilities.",
 	"articleurl":"http://software.intel.com/en-us/html5/",
-    "screenshotUrl":"",
-    "iconUrl":"",
+    	"screenshotUrl":"",
+    	"iconUrl":"",
 	"highlights":["Crosswalk", "Video Playback"],
-    "keywords":["Crosswalk", "Video Playback"],
+    	"keywords":["Crosswalk", "Video Playback"],
 	"visible": "true",
 	"apppreview":"false",
 	"appname":"",
-	"relname":"4.0.0"
+	"relname":"4.0.0",
+  	"projectTypeName": "com.intel.xdk.projecttype.jsapp"
 }
 
